@@ -161,7 +161,7 @@ class Task(Base):
         fail_retry_times: Optional[int] = 0,
         fail_retry_interval: Optional[int] = 1,
         timeout_notify_strategy: Optional = None,
-        timeout: Optional[timedelta] = None,
+        timeout: Optional[int] = 0,
         workflow: Optional[Workflow] = None,
         resource_list: Optional[List] = None,
         dependence: Optional[Dict] = None,
@@ -185,7 +185,7 @@ class Task(Base):
         self.fail_retry_interval = fail_retry_interval
         self.delay_time = delay_time
         self.timeout_notify_strategy = timeout_notify_strategy
-        self._timeout: timedelta = timeout
+        self._timeout = timeout
         self._workflow = None
         self._input_params = input_params or {}
         self._output_params = output_params or {}
@@ -243,17 +243,17 @@ class Task(Base):
     @property
     def timeout(self) -> int:
         """Get attribute timeout."""
-        return timedelta2timeout(self._timeout) if self._timeout else 0
+        return self._timeout
 
     @timeout.setter
-    def timeout(self, val: timedelta) -> None:
+    def timeout(self, val: int) -> None:
         """Set attribute timeout."""
         self._timeout = val
 
     @property
     def timeout_flag(self) -> str:
         """Whether the timeout attribute is being set or not."""
-        return TaskTimeoutFlag.ON if self._timeout else TaskTimeoutFlag.OFF
+        return TaskTimeoutFlag.ON if self._timeout > 0 else TaskTimeoutFlag.OFF
 
     @property
     def resource_list(self) -> List[Dict[str, Resource]]:
