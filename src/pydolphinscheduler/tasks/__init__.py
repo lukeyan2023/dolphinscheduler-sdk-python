@@ -41,6 +41,7 @@ from pydolphinscheduler.tasks.spark import Spark
 from pydolphinscheduler.tasks.sql import Sql
 from pydolphinscheduler.tasks.sub_workflow import SubWorkflow
 from pydolphinscheduler.tasks.switch import Branch, Default, Switch, SwitchCondition
+from pydolphinscheduler.tasks.seatunnel import SeaTunnel
 
 __all__ = [
     "Condition",
@@ -68,4 +69,5 @@ __all__ = [
     "Switch",
     "SageMaker",
     "Kubernetes",
+    "SeaTunnel",
 ]

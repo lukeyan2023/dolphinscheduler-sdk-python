@@ -64,6 +64,7 @@ class TaskType(str):
     PYTORCH = "PYTORCH"
     DVC = "DVC"
     KUBERNETES = "K8S"
+    SEATUNNEL = "SEATUNNEL"
 
 
 class DefaultTaskCodeNum(str):

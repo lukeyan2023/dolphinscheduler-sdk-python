@@ -95,7 +95,7 @@ class Sql(Task):
         self._sql = sql
         super().__init__(name, TaskType.SQL, *args, **kwargs)
         self.param_sql_type = sql_type
-        if sql_type == SqlType.SELECT and sql_delimiter:
+        if sql_type == SqlType.SELECT[0] and sql_delimiter:
             warnings.warn(
                 "Parameter `sql_delimiter` is only supported in `sql_type=SqlType.NO_SELECT`, but current "
                 "sql_type is `sql_type=SqlType.SELECT`, so `sql_delimiter` will be ignored.",
