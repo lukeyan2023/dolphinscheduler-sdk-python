@@ -86,7 +86,7 @@ class SeaTunnel(Task):
     }
 
     ext: set = {".config"}
-    ext_attr: str = "_config"
+    ext_attr: str = "_raw_script"
 
     def __init__(
             self,
@@ -99,8 +99,8 @@ class SeaTunnel(Task):
             *args,
             **kwargs
     ):
+        self._raw_script = raw_script
         super().__init__(name, TaskType.SEATUNNEL, *args, **kwargs)
-        self.raw_script = raw_script
         self.startup_script = startup_script
         self.deploy_mode = deploy_mode
         self.use_custom = use_custom
