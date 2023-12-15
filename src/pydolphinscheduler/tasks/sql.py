@@ -32,8 +32,8 @@ log = logging.getLogger(__file__)
 class SqlType:
     """SQL type, for now it just contain `SELECT` and `NO_SELECT`."""
 
-    SELECT = "SELECT"
-    NOT_SELECT = "NOT_SELECT"
+    SELECT = ("SELECT", "0")
+    NOT_SELECT = ("NOT_SELECT", "1")
 
 
 class Sql(Task):
@@ -130,24 +130,27 @@ class Sql(Task):
         which type of the SQL is. But if `param_sql_type` is specific
         will use the parameter overwrites the regexp way
         """
-        if (
-            self.param_sql_type == SqlType.SELECT
-            or self.param_sql_type == SqlType.NOT_SELECT
-        ):
+        if self.param_sql_type == SqlType.SELECT[0]:
             log.info(
                 "The sql type is specified by a parameter, with value %s",
                 self.param_sql_type,
             )
-            return self.param_sql_type
+            return SqlType.SELECT[1]
+        elif self.param_sql_type == SqlType.NOT_SELECT[0]:
+            log.info(
+                "The sql type is specified by a parameter, with value %s",
+                self.param_sql_type,
+            )
+            return SqlType.NOT_SELECT[1]
         pattern_select_str = (
             "^(?!(.* |)insert |(.* |)delete |(.* |)drop "
             "|(.* |)update |(.* |)truncate |(.* |)alter |(.* |)create ).*"
         )
         pattern_select = re.compile(pattern_select_str, re.IGNORECASE)
         if pattern_select.match(self._sql) is None:
-            return SqlType.NOT_SELECT
+            return SqlType.NOT_SELECT[1]
         else:
-            return SqlType.SELECT
+            return SqlType.SELECT[1]
 
     @property
     def datasource(self) -> Dict:
