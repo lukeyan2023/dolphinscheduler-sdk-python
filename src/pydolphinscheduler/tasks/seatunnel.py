@@ -32,7 +32,7 @@ from pydolphinscheduler.exceptions import PyDSParamException
 log = logging.getLogger(__file__)
 
 
-class DeployMode(str):
+class DeployMode:
     """SeaTunnel deploy mode, for now it just contain `LOCAL`, `CLIENT` and `CLUSTER`."""
 
     LOCAL = "local"
@@ -40,7 +40,7 @@ class DeployMode(str):
     CLIENT = "client"
 
 
-class SparkMaster(str):
+class SparkMaster:
     """Spark Master mode, for now it just contain `YARN`, `LOCAL`, `SPARK` and `MESOS`."""
     YARN = "yarn"
     LOCAL = "local"
@@ -48,7 +48,7 @@ class SparkMaster(str):
     MESOS = "mesos://"
 
 
-class FlinkRunMode(str):
+class FlinkRunMode:
     """Flink run mode, for now it just contain `NONE`, `RUN`, `RUN_APPLICATION`"""
 
     NONE = "none"
@@ -56,7 +56,7 @@ class FlinkRunMode(str):
     RUN_APPLICATION = "run-application"
 
 
-class StartupScript(str):
+class StartupScript:
     SEATUNNEL = "seatunnel.sh"
     SEATUNNEL_FLINK_13_V2 = "start-seatunnel-flink-13-connector-v2.sh"
     SEATUNNEL_FLINK_15_V2 = "start-seatunnel-flink-15-connector-v2.sh"
