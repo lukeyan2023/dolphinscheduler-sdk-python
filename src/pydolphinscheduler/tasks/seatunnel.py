@@ -18,12 +18,6 @@
 """Task SeaTunnel."""
 
 import logging
-import re
-import types
-from pathlib import Path
-from typing import Union, Optional
-
-from stmdency.extractor import Extractor
 
 from pydolphinscheduler.constants import TaskType
 from pydolphinscheduler.core.task import Task
@@ -100,7 +94,7 @@ class SeaTunnel(Task):
         self._raw_script = raw_script
         super().__init__(name, TaskType.SEATUNNEL, *args, **kwargs)
         self.startup_script = startup_script
-        self.deploy_mode = deploy_mode
+        self._deploy_mode = deploy_mode
         self.use_custom = use_custom
         self.spark_master = spark_master
         self.flink_run_mode = flink_run_mode
