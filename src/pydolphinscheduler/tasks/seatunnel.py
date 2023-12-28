@@ -96,8 +96,8 @@ class SeaTunnel(Task):
         self.startup_script = startup_script
         self._deploy_mode = deploy_mode
         self.use_custom = use_custom
-        self.spark_master = spark_master
-        self.flink_run_mode = flink_run_mode
+        self._spark_master = spark_master
+        self._flink_run_mode = flink_run_mode
         self.others = others
 
     @property
