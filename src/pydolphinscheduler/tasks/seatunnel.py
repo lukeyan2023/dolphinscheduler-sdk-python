@@ -98,7 +98,7 @@ class SeaTunnel(Task):
         self.use_custom = use_custom
         self._spark_master = spark_master
         self._flink_run_mode = flink_run_mode
-        self.others = others
+        self._others = others
 
     @property
     def deploy_mode(self) -> DeployMode | None:
